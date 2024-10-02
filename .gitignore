@@ -1,0 +1,29 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# VS Code specific files
+.vscode/
+
+# Go specific files
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test binaries
+*.test
+
+# Go dependency files
+vendor/
+
+# Go build output
+*.out
+
+# General files
+*.log
+*.tmp
+*.swp
+.DS_Store

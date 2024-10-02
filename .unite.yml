@@ -1,0 +1,11 @@
+name: unite-workload-example
+description: "An example application to show how to use Github CI/CD with Unite for your workloads"
+version: ${GITHUB_RELEASE_VERSION}
+runCommand: |
+  unite-workload-example-${PLATFORM} -message "Hello, from a Unite workload!"
+installCommand: |
+  cp unite-workload-example-${PLATFORM} /usr/local/bin/ 
+  chmod +x /usr/local/bin/unite-workload-example-${PLATFORM}
+os: Linux
+platform: ${PLATFORM}
+restarts: 10
