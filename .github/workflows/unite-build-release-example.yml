@@ -39,6 +39,9 @@ jobs:
           export DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           envsubst < RELEASE.md.template > RELEASE.md
 
+      - name: List files for debugging
+        run: ls -la
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
