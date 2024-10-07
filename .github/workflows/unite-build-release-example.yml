@@ -26,7 +26,7 @@ jobs:
         run: |
           GOARCH=${{ matrix.arch }} go build -o unite-workload-example-${{ matrix.arch }} cmd/main.go
 
-      - name: Prepare .unite.yml
+      - name: Prepare unite.yml
         run: |
           export PLATFORM=${{ matrix.arch }}
           export GITHUB_RELEASE_VERSION=${{ github.sha }}
@@ -48,17 +48,17 @@ jobs:
           name: unite-workload-example-${{ matrix.arch }}
           path: unite-workload-example-${{ matrix.arch }}
 
-      - name: Upload .unite.yml
+      - name: Upload unite.yml
         uses: actions/upload-artifact@v3
         with:
-          name: .unite.yml-${{ matrix.arch }}
+          name: unite.yml-${{ matrix.arch }}
           path: unite.yml
 
       - name: Upload RELEASE.md
         uses: actions/upload-artifact@v3
         with:
           name: RELEASE.md-${{ matrix.arch }}
-          path: ./RELEASE.md
+          path: RELEASE.md
 
   release:
     needs: build
@@ -79,15 +79,15 @@ jobs:
           name: unite-workload-example-arm64
           path: ./build
 
-      - name: Download .unite.yml for amd64
+      - name: Download unite.yml for amd64
         uses: actions/download-artifact@v3
         with:
-          name: .unite.yml-amd64
+          name: unite.yml-amd64
           path: ./build
-      - name: Download .unite.yml for arm64
+      - name: Download unite.yml for arm64
         uses: actions/download-artifact@v3
         with:
-          name: .unite.yml-arm64
+          name: unite.yml-arm64
           path: ./build
 
       - name: Download RELEASE.md for amd64
@@ -132,24 +132,24 @@ jobs:
           asset_name: unite-workload-example-arm64
           asset_content_type: application/octet-stream
 
-      - name: Upload .unite.yml for amd64
+      - name: Upload unite.yml for amd64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/.unite.yml-amd64
-          asset_name: .unite.yml-amd64
+          asset_path: ./build/unite.yml-amd64
+          asset_name: unite.yml-amd64
           asset_content_type: text/yaml
 
-      - name: Upload .unite.yml for arm64
+      - name: Upload unite.yml for arm64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/.unite.yml-arm64
-          asset_name: .unite.yml-arm64
+          asset_path: ./build/unite.yml-arm64
+          asset_name: unite.yml-arm64
           asset_content_type: text/yaml
 
       - name: Upload RELEASE.md for amd64
