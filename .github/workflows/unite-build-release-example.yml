@@ -10,7 +10,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      sha: ${{ steps.sha.outputs.short }}
     strategy:
       matrix:
         arch: [amd64, arm64]
@@ -19,6 +20,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Sha
+        id: sha
+        run: echo "short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -112,8 +116,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }} | cut -c1-7
-          release_name: Release ${{ github.sha }} | cut -c1-7
+          tag_name: v${{ needs.build.outputs.sha }}
+          release_name: Release ${{ needs.build.outputs.sha }}
           draft: false
           prerelease: false
 
