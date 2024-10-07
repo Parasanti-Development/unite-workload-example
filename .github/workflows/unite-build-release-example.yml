@@ -147,7 +147,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite.yml-amd64
+          asset_path: ./build/unite.yml
           asset_name: unite.yml-amd64
           asset_content_type: text/yaml
 
@@ -157,7 +157,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite.yml-arm64
+          asset_path: ./build/unite.yml
           asset_name: unite.yml-arm64
           asset_content_type: text/yaml
 
