@@ -51,13 +51,13 @@ jobs:
 
       - name: Create zip archive
         run: |
-          zip -j unite-workload-example-${{ matrix.arch }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
+          zip -j unite-workload-example-${{ needs.build.outputs.sha }}-${{ matrix.arch }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
 
       - name: Upload zip archive
         uses: actions/upload-artifact@v3
         with:
-          name: unite-workload-example-${{ matrix.arch }}.zip
-          path: unite-workload-example-${{ matrix.arch }}.zip
+          name: unite-workload-example-${{ matrix.arch }}-${{ needs.build.outputs.sha }}.zip
+          path: unite-workload-example-${{ matrix.arch }}-${{ needs.build.outputs.sha }}.zip
 
   release:
     needs: build
@@ -95,8 +95,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite-workload-example-amd64.zip
-          asset_name: unite-workload-example-amd64.zip
+          asset_path: ./build/unite-workload-example-amd64-${{ needs.build.outputs.sha }}.zip
+          asset_name: unite-workload-example-amd64-${{ needs.build.outputs.sha }}.zip
           asset_content_type: application/zip
 
       - name: Upload Release Assets for arm64
@@ -105,6 +105,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite-workload-example-arm64.zip
-          asset_name: unite-workload-example-arm64.zip
+          asset_path: ./build/unite-workload-example-arm64-${{ needs.build.outputs.sha }}.zip
+          asset_name: unite-workload-example-arm64-${{ needs.build.outputs.sha }}.zip
           asset_content_type: application/zip
