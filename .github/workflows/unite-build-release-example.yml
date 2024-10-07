@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -66,7 +66,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Download build artifacts
         uses: actions/download-artifact@v3
@@ -101,6 +101,9 @@ jobs:
           name: RELEASE.md-arm64
           path: ./build
 
+      # Ensure that the GITHUB_TOKEN has the necessary permissions to create releases.
+      # You can configure the permissions in the repository settings under
+      # Settings > Actions > General > Workflow permissions.
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
