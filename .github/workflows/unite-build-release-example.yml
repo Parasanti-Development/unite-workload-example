@@ -66,34 +66,34 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: unite-workload-example-amd64
           path: ./build
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: unite-workload-example-arm64
           path: ./build
 
       - name: Download .unite.yml for amd64
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: .unite.yml-amd64
           path: ./build
       - name: Download .unite.yml for arm64
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: .unite.yml-arm64
           path: ./build
 
       - name: Download RELEASE.md for amd64
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: RELEASE.md-amd64
           path: ./build
       - name: Download RELEASE.md for arm64
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: RELEASE.md-arm64
           path: ./build
