@@ -40,19 +40,19 @@ jobs:
           envsubst < RELEASE.md.template > RELEASE.md
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: unite-workload-example-${{ matrix.arch }}
           path: unite-workload-example-${{ matrix.arch }}
 
       - name: Upload .unite.yml
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: .unite.yml-${{ matrix.arch }}
           path: .unite.yml
 
       - name: Upload RELEASE.md
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: RELEASE.md-${{ matrix.arch }}
           path: RELEASE.md
