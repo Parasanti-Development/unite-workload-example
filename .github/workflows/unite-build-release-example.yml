@@ -30,7 +30,7 @@ jobs:
         run: |
           export PLATFORM=${{ matrix.arch }}
           export GITHUB_RELEASE_VERSION=${{ github.sha }}
-          envsubst < .unite.yml.template > .unite.yml
+          envsubst < .unite.yml.template > unite.yml
 
       - name: Prepare RELEASE.md
         run: |
@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: .unite.yml-${{ matrix.arch }}
-          path: ./.unite.yml
+          path: unite.yml
 
       - name: Upload RELEASE.md
         uses: actions/upload-artifact@v3
