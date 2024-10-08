@@ -107,6 +107,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite-workload-example-arm64-${{ needs.build.outputs.sha }}.zip
-          asset_name: unite-workload-example-arm64-${{ needs.build.outputs.sha }}.zip
+          asset_path: ./build/unite-workload-example-${{ env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
+          asset_name: unite-workload-example-${{ env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
           asset_content_type: application/zip
