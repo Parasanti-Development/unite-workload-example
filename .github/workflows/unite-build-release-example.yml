@@ -9,7 +9,9 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    env:
+      UBUNTU_VERSION: 22.04
     outputs:
       sha: ${{ steps.sha.outputs.short }}
     strategy:
@@ -51,13 +53,13 @@ jobs:
 
       - name: Create zip archive
         run: |
-          zip -j unite-workload-example-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
+          zip -j unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
 
       - name: Upload zip archive
         uses: actions/upload-artifact@v3
         with:
-          name: unite-workload-example-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip
-          path: unite-workload-example-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip
+          name: unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip
+          path: unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip
 
   release:
     needs: build
