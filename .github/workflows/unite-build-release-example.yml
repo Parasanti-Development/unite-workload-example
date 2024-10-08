@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     env:
-      UBUNTU_VERSION: 22.04
+      UBUNTU_VERSION: ubuntu-22.04
     outputs:
       sha: ${{ steps.sha.outputs.short }}
       ubuntu_version: ${{ env.UBUNTU_VERSION }}
