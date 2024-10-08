@@ -72,12 +72,12 @@ jobs:
       - name: Download zip archive for amd64
         uses: actions/download-artifact@v3
         with:
-          name: unite-workload-example-amd64-${{ needs.build.outputs.sha }}.zip
+          name: unite-workload-example-${{ env.UBUNTU_VERSION }}-amd64-${{ needs.build.outputs.sha }}.zip
           path: ./build
       - name: Download zip archive for arm64
         uses: actions/download-artifact@v3
         with:
-          name: unite-workload-example-arm64-${{ needs.build.outputs.sha }}.zip
+          name: unite-workload-example-${{ env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
           path: ./build
 
       - name: Create Release
