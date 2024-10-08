@@ -51,13 +51,13 @@ jobs:
 
       - name: Create zip archive
         run: |
-          zip -j unite-workload-example-${{ matrix.arch }}-${{ needs.build.outputs.sha }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
+          zip -j unite-workload-example-${{ matrix.arch }}-${{ steps.build.outputs.sha }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
 
       - name: Upload zip archive
         uses: actions/upload-artifact@v3
         with:
-          name: unite-workload-example-${{ matrix.arch }}-${{ needs.build.outputs.sha }}.zip
-          path: unite-workload-example-${{ matrix.arch }}-${{ needs.build.outputs.sha }}.zip
+          name: unite-workload-example-${{ matrix.arch }}-${{ steps.build.outputs.sha }}.zip
+          path: unite-workload-example-${{ matrix.arch }}-${{ steps.build.outputs.sha }}.zip
 
   release:
     needs: build
