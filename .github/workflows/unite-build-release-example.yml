@@ -60,7 +60,7 @@ jobs:
 
       - name: Create zip archive
         run: |
-          zip -j unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }} 
+          zip -r unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }}/ 
 
       - name: Upload zip archive
         uses: actions/upload-artifact@v3
