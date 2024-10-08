@@ -54,12 +54,13 @@ jobs:
 
       - name: Create directory structure
         run: |
-          mkdir -p unite-workload-example-${{ matrix.arch }}
-          mv unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md unite-workload-example-${{ matrix.arch }}/
+          mkdir -p unite-workload-example
+          mv unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md unite-workload-example/
+          mv unite-workload-example unite-workload-example-${{ matrix.arch }}
 
       - name: Create zip archive
         run: |
-          zip -j unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
+          zip -j unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }} 
 
       - name: Upload zip archive
         uses: actions/upload-artifact@v3
