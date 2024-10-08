@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+	fmt.Println("Starting the application...")
 	message := flag.String("message", "Hello, This is the default message.", "Message to print")
 	flag.Parse()
 
