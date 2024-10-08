@@ -52,6 +52,11 @@ jobs:
       - name: List files for debugging
         run: ls -la
 
+      - name: Create directory structure
+        run: |
+          mkdir -p unite-workload-example-${{ matrix.arch }}
+          mv unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md unite-workload-example-${{ matrix.arch }}/
+
       - name: Create zip archive
         run: |
           zip -j unite-workload-example-${{ env.UBUNTU_VERSION }}-${{ matrix.arch }}-${{ steps.sha.outputs.short }}.zip unite-workload-example-${{ matrix.arch }} unite.yml RELEASE.md
