@@ -72,12 +72,12 @@ jobs:
       - name: Download zip archive for amd64
         uses: actions/download-artifact@v3
         with:
-          name: unite-workload-example-${{ env.UBUNTU_VERSION }}-amd64-${{ needs.build.outputs.sha }}.zip
+          name: unite-workload-example-${{ needs.env.UBUNTU_VERSION }}-amd64-${{ needs.build.outputs.sha }}.zip
           path: ./build
       - name: Download zip archive for arm64
         uses: actions/download-artifact@v3
         with:
-          name: unite-workload-example-${{ env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
+          name: unite-workload-example-${{ needs.env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
           path: ./build
 
       - name: Create Release
@@ -97,8 +97,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite-workload-example-amd64-${{ needs.build.outputs.sha }}.zip
-          asset_name: unite-workload-example-amd64-${{ needs.build.outputs.sha }}.zip
+          asset_path: ./build/unite-workload-example-${{ needs.env.UBUNTU_VERSION }}-amd64-${{ needs.build.outputs.sha }}.zip
+          asset_name: unite-workload-example-${{ needs.env.UBUNTU_VERSION }}-amd64-${{ needs.build.outputs.sha }}.zip
           asset_content_type: application/zip
 
       - name: Upload Release Assets for arm64
@@ -107,6 +107,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/unite-workload-example-${{ env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
-          asset_name: unite-workload-example-${{ env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
+          asset_path: ./build/unite-workload-example-${{ needs.env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
+          asset_name: unite-workload-example-${{ needs.env.UBUNTU_VERSION }}-arm64-${{ needs.build.outputs.sha }}.zip
           asset_content_type: application/zip
