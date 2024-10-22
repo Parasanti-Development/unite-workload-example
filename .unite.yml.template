@@ -6,7 +6,7 @@ runCommand: |
 installCommand: |
   cp unite-workload-example-${PLATFORM} /usr/local/bin/ 
   chmod +x /usr/local/bin/unite-workload-example-${PLATFORM}
-installTimoutSeconds: 60
+installTimeoutSeconds: 60
 os: Linux
 platform: ${PLATFORM}
 resource:
