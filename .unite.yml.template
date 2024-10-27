@@ -11,5 +11,5 @@ os: Linux
 platform: ${PLATFORM}
 resource:
     cpu: 0.1
-    memory: 128Mi
+    memory: 128
 restarts: 10
